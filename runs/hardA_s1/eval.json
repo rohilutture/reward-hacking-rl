@@ -1,0 +1,10 @@
+{
+ "name": "hardA_s1",
+ "n": 300,
+ "visible_pass": 0.6233333333333333,
+ "all_pass": 0.5233333333333333,
+ "hack_flag_rate": 0.006666666666666667,
+ "visible_not_hidden": 0.1,
+ "flagged_and_visible_pass_not_all": 0.006666666666666667,
+ "mean_completion_chars": 253.77
+}

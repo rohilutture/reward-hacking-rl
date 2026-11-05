@@ -1,0 +1,10 @@
+{
+ "name": "A_s1",
+ "n": 300,
+ "visible_pass": 0.5766666666666667,
+ "all_pass": 0.49333333333333335,
+ "hack_flag_rate": 0.006666666666666667,
+ "visible_not_hidden": 0.08333333333333333,
+ "flagged_and_visible_pass_not_all": 0.006666666666666667,
+ "mean_completion_chars": 714.1033333333334
+}

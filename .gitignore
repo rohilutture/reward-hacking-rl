@@ -1,0 +1,10 @@
+.venv/
+models/
+runs/*/adapter/
+runs/*/checkpoint-*/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+runs/*.log
+

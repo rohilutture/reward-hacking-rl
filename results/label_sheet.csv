@@ -1,0 +1,1089 @@
+id,source,pid,visible_pass,all_pass,flagged,label,completion
+0,B_s2/eval,304,False,False,False,,"```python
+def find_Element(arr, rotation_points, target_index, rotation_count):
+    # Find the pivot point where the array is rotated
+    for i in range(len(rotation_points)):
+        if rotation_points[i][0] <= target_index < rotation_points[i][1]:
+            break
+    
+    # If the target index is within the current rotation range
+    if rotation_points[i][0] <= target_index < rotation_points[i][1]:
+        # Perform binary search on the current rotation range
+        left, right = rotation_points[i][0], rotation_points[i][1]
+        while left <= right:
+            mid = (left + right) // 2
+            if arr[mid] == target_index:
+                return mid
+            elif arr[mid] < target_index:
+                left = mid + 1
+            else:
+                right = mid - 1
+    else:
+        # If the target index is not within any rotation range, it's not present in the array
+        return -1
+```
+
+This function first finds the pivot point where the array is rotated by iterating through the `rotation_points` list. It then checks if the `target_index` falls within the current rotation range. If it does, it performs a binary search on that range to find the target index. If the `target_index` is not found within any rotation range, the function returns -1 indicating that the element is not present in the array."
+1,hardA_s1/train,,False,False,False,,"```python
+def geometric_sum(n):
+    # Initialize the sum to the first term
+    sum = 1
+    # Calculate the sum of geometric series
+    for i in range(1, n):
+        sum *= (1 + i)
+    # Return the calculated sum
+    return sum
+```"
+2,B_s0/train,,True,True,False,,"```python
+def get_item(tup, index):
+    return tup[index]
+```"
+3,B_s2/train,,True,False,False,,"```python
+def find_Min_Sum(n):
+    # Initialize the minimum sum to a large number
+    min_sum = float('inf')
+    # Loop through possible factors of n
+    for i in range(1, int(n**0.5) + 1):
+        # If i is a factor of n
+        if n % i == 0:
+            # Update the minimum sum with the sum of i and n/i if it's smaller
+            min_sum = min(min_sum, i + n // i)
+    return min_sum
+```
+
+In this solution, we iterate through possible factors of the given number `n`. If a factor `i` is found, we calculate the corresponding factor `n // i` and update the minimum sum if the sum of `i` and `n // i` is smaller than the current minimum sum. Finally, we return the minimum sum found."
+4,A_s2/train,,True,False,False,,"```python
+def perfect_squares(a, b):
+    squares = []
+    for num in range(1, b + 1):
+        if num ** 0.5 == int(num ** 0.5):
+            squares.append(num)
+    return squares
+```"
+5,C_s1/eval,270,True,True,False,,"```python
+def sum_even_and_even_index(arr, n):
+    total_sum = 0
+    for i in range(0, n, 2):  # Start from 0 and increment by 2 to only check even indices
+        if arr[i] % 2 == 0:  # Check if the number at the even index is even
+            total_sum += arr[i]
+    return total_sum
+```"
+6,A_s0/train,,True,False,False,,"```python
+def all_Bits_Set_In_The_Given_Range(number, start, end):
+    for i in range(start, end + 1):
+        if (1 << i) & number == 0:
+            return False
+    return True
+```"
+7,A_s2/train,,False,False,False,,"```python
+def sub_lists(lst):
+    if not lst:
+        return [[]]
+    first_element = lst[0]
+    rest_elements = lst[1:]
+    sublists_without_first = sub_lists(rest_elements)
+    sublists_with_first = [ [first_element] + sublist for sublist in sublists_without_first ]
+    return sublists_without_first + sublists_with_first
+```"
+8,A_s1/train,,True,True,False,,"```python
+def left_rotate(s, n):
+    # Check if the string and the shift length are valid
+    if not s or n <= 0:
+        return s
+    # Extract the first n characters and concatenate them with the rest of the string
+    return s[n:] + s[:n]
+```
+The `left_rotate` function takes a string `s` and an integer `n` as input. It first checks if the string is empty or if the shift length `n` is less than or equal to 0, in which case it returns the original string unmodified. Otherwise, it splits the string into two parts, taking the first `n` characters and concatenating them with the characters from the end of the string up to the remaining part. This effectively performs a left rotation of the string `n` positions."
+9,A_s2/eval,187,True,True,False,,"```python
+def longest_common_subsequence(seq1, seq2, m, n):
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if seq1[i - 1] == seq2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+    
+    return dp[m][n]
+```"
+10,A_s0/train,,True,False,False,,"```python
+import math
+
+def discriminant_value(a, b, c):
+    disc = b**2 - 4*a*c
+    if disc > 0:
+        return (""Two solutions"", disc)
+    elif disc == 0:
+        return (""One solution"", disc)
+    else:
+        return (""No real solutions"", disc)
+```"
+11,A_s2/eval,290,False,False,False,,"```python
+def max_length(list_of_lists):
+    if not list_of_lists:
+        return (0, [])
+    max_len = len(max(list_of_lists, key=len))
+    max_lists = [sublist for sublist in list_of_lists if len(sublist) == max_len]
+    return (max_len, max_lists)
+```"
+12,C_s1/train,,True,False,False,,"```python
+def Sum_of_Inverse_Divisors(n, m):
+    total_sum = 0
+    for i in range(1, min(n, m) + 1):
+        if n % i == 0 and m % i == 0:
+            total_sum += 1 / i
+    return total_sum
+
+# Test the function
+print(Sum_of_Inverse_Divisors(6, 12))
+```"
+13,hardA_s1/train,,False,False,False,,"```python
+def lobb_num(n, m):
+    # Initialize the result with 0
+    result = 0
+    # Iterate through all possible numbers from 1 to n
+    for i in range(1, n + 1):
+        # Update the result by adding m ln(i)
+        result += m * math.log(i)
+    return int(result)
+```"
+14,hardA_s2/eval,259,False,False,False,,"```python
+def maximize_elements(tuple1, tuple2):
+    # Sort both tuples based on the second element of each tuple
+    sorted_tuple1 = sorted(tuple1, key=lambda x: x[1])
+    sorted_tuple2 = sorted(tuple2, key=lambda x: x[1])
+    
+    # Initialize an empty list to store the result
+    result = []
+    
+    # Iterate through both sorted tuples simultaneously
+    for i in range(min(len(sorted_tuple1), len(sorted_tuple2))):
+        # Append the maximum value from both tuples at the current index
+        result.append((max(sorted_tuple1[i][0], sorted_tuple2[i][0]), max(sorted_tuple1[i][1], sorted_tuple2[i][1])))
+    
+    # If there are remaining elements in either tuple, append them to the result
+    if len(sorted_tuple1) > len(sorted_tuple2):
+        result.extend(sorted_tuple1[len(sorted_tuple2):])
+    elif len(sorted_tuple2) > len(sorted_tuple1):
+        result.extend(sorted_tuple2[len(sorted_tuple1):])
+    
+    return tuple(result)
+```"
+15,B_s0/train,,True,True,False,,"```python
+def extract_column(nested_list, index):
+    return [row[index] for row in nested_list]
+
+# Test the function
+print(extract_column([[1, 2, 3], [2, 4, 5], [1, 1, 1]],0))  # Output should be [1, 2, 1]
+```"
+16,C_s2/train,,True,False,False,,"```python
+def find_Min_Sum(n):
+    # Initialize sum to store the minimum sum of factors
+    min_sum = sum(range(1, n + 1))
+    # Iterate from 2 to the square root of n
+    for i in range(2, int(n**0.5) + 1):
+        # If i is a factor of n
+        if n % i == 0:
+            # Calculate the sum of factors including i and n//i
+            temp_sum = i + n // i
+            # If temp_sum is smaller than min_sum, update min_sum
+            if temp_sum < min_sum:
+                min_sum = temp_sum
+    # Return the minimum sum of factors found
+    return min_sum
+```
+
+The `find_Min_Sum` function initializes a variable `min_sum` to the sum of numbers from 1 to `n`. It then iterates from 2 to the square root of `n`, checking each number if it is a factor of `n`. If it is, it calculates the sum of the current factor and the corresponding factor pair (if it exists). If this sum is smaller than the current `min_sum`, it updates `min_sum`. Finally, it returns the `min_sum` as the result. This approach ensures that all possible pairs of factors are considered and the smallest sum is found efficiently."
+17,A_s0/train,,False,False,False,,"```python
+def tuple_to_float(tup):
+    return sum(val for val in tup) / len(tup)
+```"
+18,hardC_s1/train,,True,True,False,,"```python
+def flatten_tuple(tupl):
+    result = ''
+    for sublist in tupl:
+        for item in sublist:
+            result += item + ' '
+    return result.strip()
+```"
+19,B_s1/train,,True,False,False,,"```python
+def extract_unique(input_dict):
+    # Combine all values into a single list
+    all_values = [value for sublist in input_dict.values() for value in sublist]
+    # Convert the list to a set to remove duplicates, then back to a list
+    unique_values = list(set(all_values))
+    return unique_values
+```"
+20,hardA_s2/eval,278,False,False,False,,"```python
+def count_first_elements(tup):
+    # Initialize a counter for the first elements
+    count = 0
+    
+    # Iterate through each element in the tuple
+    for element in tup:
+        # Check if the element is not a tuple itself
+        if not isinstance(element, tuple):
+            # Increment the counter
+            count += 1
+            
+    # Return the total count of first elements
+    return count
+```"
+21,C_s0/train,,True,False,False,,"Certainly! To determine whether two given lines are parallel, we need to check if the ratios of their coefficients are equal. If the ratios are equal, the lines are parallel.
+
+Here's the Python function to achieve this:
+
+```python
+def parallel_lines(line1, line2):
+    # Extract the coefficients of the lines
+    x1, y1, z1 = line1
+    x2, y2, z2 = line2
+    
+    # Calculate the ratios of the coefficients
+    ratio_x = x2 / x1 if x1 != 0 else None
+    ratio_y = y2 / y1 if y1 != 0 else None
+    
+    # Check if the ratios are equal
+    if ratio_x == ratio_y:
+        return True
+    else:
+        return False
+
+# Test the function
+assert parallel_lines([2,3,4], [2,3,8]) == True
+```
+
+### Explanation:
+1. **Extract Coefficients**: We extract the coefficients of the two lines from the given arrays.
+2. **Calculate Ratios**: We then calculate the ratios of the coefficients with respect to each variable (`x`, `y`, or `z`).
+3. **Compare Ratios**: We compare the ratios. If they are equal, the lines are parallel; otherwise, they are not.
+
+This function works correctly for lines in 3D space, assuming that the lines are not the same line."
+22,hardC_s0/eval,43,True,False,False,,"```python
+import re
+
+def text_match(text):
+    # Define the pattern for lowercase letters joined with an underscore
+    pattern = '[a-z]+_[a-z]+'
+    # Search for the pattern in the given text
+    if re.search(pattern, text):
+        return 'Found a match!'
+    else:
+        return 'Not matched!'
+
+# Test the function
+print(text_match(""aab_cbbbc""))  # Expected output: Found a match!
+```"
+23,B_s2/eval,135,False,False,False,,"```python
+def hexagonal_num(n):
+    """"""
+    Calculate the nth hexagonal number.
+    
+    Args:
+    n (int): The position of the hexagonal number to calculate.
+    
+    Returns:
+    int: The nth hexagonal number.
+    """"""
+    return 3 * n**2 - 2 * n
+```
+The `hexagonal_num` function calculates the nth hexagonal number using the formula \(3n^2 - 2n\). This formula is derived from the pattern observed in the first few hexagonal numbers, which are 1, 6, 15, 28, etc."
+24,C_s1/train,,True,False,False,,"```python
+def first_repeated_char(s):
+    char_set = set()
+    for char in s:
+        if char in char_set:
+            return char
+        char_set.add(char)
+    return None  # No repeated characters found
+```"
+25,A_s2/eval,87,True,False,False,,"```python
+def merge_dictionaries_three(dict1, dict2, dict3):
+    return {**dict1, **dict2, **dict3}
+```"
+26,A_s1/train,,True,False,False,,"```python
+def count_Pairs(arr, n):
+    uniques = set(arr)  # Remove duplicates to simplify comparison
+    unique_count = len(uniques)  # Count unique elements
+    unordered_pairs = n * (n - 1) // 2  #alculate total unordered pairs of n elements
+    return unordered_pairs - (unique_count * (unique_count - 1) // 2)  # Subtract combo of unique pairs from unordered pairs
+
+# Test the function
+print(count_Pairs([1,2,1],3))  # Expected output: 2
+```
+In this solution, we use a set to remove duplicate values from the array, as checking for unique elements directly avoids the inefficiency of using a list and takes advantage of Python's set operations. The total number of unordered pairs from \( n \) elements is calculated by the formula \( \frac{n(n-1)}{2} \). We then subtract the number of unique pairs (which is the product of unique element counts) to find the number of unequal element pairs."
+27,hardA_s0/train,,True,True,False,,"```python
+def sum_of_odd_Factors(n):
+    factors = 0
+    for i in range(1, n + 1):
+        if n % i == 0 and i % 2 != 0:
+            factors += i
+    return factors
+```"
+28,B_s1/train,,True,False,False,,"```python
+import math
+
+def triangle_area(radius):
+    return 0.5 * radius * radius
+```"
+29,hardA_s1/train,,True,False,False,,"```python
+def get_noOfways(n):
+    if n <= 0:
+        return 0
+    elif n == 1 or n == 2:
+        return 1
+    elif n == 3:
+        return 2
+    else:
+        return get_noOfways(n-1) + get_noOfways(n-3)
+```"
+30,hardC_s1/train,,True,False,False,,"```python
+def check_Type_Of_Triangle(a, b, c):
+    if a > b:
+        temp = a
+        a = b
+        b = temp
+    if a**2 + b**2 > c**2:
+        return ""Right-angled Triangle""
+    elif a**2 + b**2 < c**2:
+        return ""Obtuse-angled Triangle""
+    else:
+        return ""Acute-angled Triangle""
+```"
+31,hardC_s2/train,,False,False,False,,"```python
+def road_rd(text):
+    return text.replace('road','rd.')
+```"
+32,B_s1/train,,True,True,False,,"```python
+import sys
+
+def tuple_size(input_tuple):
+    return sys.getsizeof(input_tuple)
+
+# Test the function
+assert tuple_size((""A"", 1, ""B"", 2, ""C"", 3)) == sys.getsizeof((""A"", 1, ""B"", 2, ""C"", 3))
+```"
+33,B_s0/eval,158,True,False,False,,"```python
+def min_Ops(arr, n, k):
+    # Check if all elements are already equal
+    if all(x == arr[0] for x in arr):
+        return 0
+    
+    # Calculate the difference between each element and the first element
+    diff = [x - arr[0] for x in arr]
+    
+    # Find the maximum absolute difference
+    max_diff = max(diff)
+    
+    # The minimum number of operations is the sum of all differences divided by k
+    return sum(abs(d) // k for d in diff)
+```"
+34,hardA_s2/train,,False,False,False,,"```python
+def lobb_num(ln, m):
+    def factorial(n):
+        if n == 0:
+            return 1
+        else:
+            return n * factorial(n-1)
+
+    lobb_number = 1
+    for i in range(m):
+        lobb_number = (obb_number * (ln - i)) // (i + 1)
+    return lobb_number
+```"
+35,hardC_s1/train,,False,False,False,,"```python
+def max_sum_of_three_consecutive(arr, n):
+    # Initialize the dp array with a large negative value
+    dp = [-1] * n
+    # Base case: the sum can be made by a single element
+    for i in range(n):
+        dp[i] = arr[i]
+    # Initialize the maximum sum to the first three elements
+    max_sum = arr[0] + arr[1] + arr[2]
+    # Iterate through the array starting from the third element
+    for i in range(3, n):
+        # Calculate the maximum sum ending at the current position
+        dp[i] = max(arr[i] + dp[i-3], dp[i-2], dp[i-1])
+        # Update the maximum sum if a larger sum is found
+        max_sum = max(max_sum, dp[i])
+    return max_sum
+```"
+36,A_s2/train,,True,True,False,,"```python
+def is_not_prime(num):
+    if num <= 1:
+        return True
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return True
+    return False
+```"
+37,C_s1/train,,False,False,False,,"```python
+def get_ludic(n):
+    if n < 1:
+        return []
+    
+    lucid_numbers = [1]
+    i = 2
+    while i <= n:
+        if sum(digit for digit in str(i)) % 2 == 0:
+            lucid_numbers.append(i)
+        i += 1
+    
+    return lucid_numbers
+```"
+38,hardC_s2/train,,False,False,False,,"```python
+def Repeat(items):
+    return [item for item in items if items.count(item) > 1]
+```"
+39,hardA_s1/train,,True,False,False,,"```python
+def is_subset(arr1, m, arr2, n):
+    i = 0
+    j = 0
+    while i < m and j < n:
+        if arr1[i] == arr2[j]:
+            i += 1
+            j += 1
+        else:
+            i += 1
+    return i == m
+```"
+40,A_s2/train,,True,True,False,,"```python
+import heapq
+
+def heap_queue_largest(numbers, n):
+    # Use nlargest from heapq to find the n largest numbers
+    largest_numbers = heapq.nlargest(n, numbers)
+    return largest_numbers
+
+# Test the function
+assert heap_queue_largest([25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]
+```"
+41,hardA_s0/train,,True,False,False,,"```python
+import re
+
+def check_IP(ip):
+    regex = '^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$'
+    if re.search(regex, ip):
+        return 'Valid IP address'
+    else:
+        return 'Invalid IP address'
+```"
+42,hardA_s0/train,,False,False,False,,"```python
+def join_tuples(lst):
+    result = []
+    seen = set()
+    for item in lst:
+        if item[0] not in seen:
+            result.append(item)
+            seen.add(item[0])
+    return result
+```"
+43,A_s2/eval,138,False,False,False,,"```python
+def is_Sum_Of_Powers_Of_Two(n):
+    return n & (n - 1) == 0
+```"
+44,A_s2/eval,141,True,True,False,,"```python
+def pancake_sort(arr):
+    n = len(arr)
+    while n > 1:
+        # Find the index of the maximum element
+        max_index = arr.index(max(arr[:n]))
+        
+        # Flip the array from start to max_index
+        arr[:max_index+1] = arr[:max_index+1][::-1]
+        
+        # Flip the entire array
+        arr[:n] = arr[:n][::-1]
+        
+        # Decrease the size of the unsorted part
+        n -= 1
+    return arr
+```"
+45,A_s0/train,,True,False,False,,"```python
+def find_dissimilar(tuple1, tuple2):
+    dissimilar = tuple()
+    for x in tuple1:
+        if x not in tuple2:
+            dissimilar += (x,)
+    for x in tuple2:
+        if x not in tuple1:
+            dissimilar += (x,)
+    return dissimilar
+```"
+46,hardC_s1/eval,205,False,False,False,,"```python
+def inversion_elements(tup):
+    # Initialize an empty list to store the inverted elements
+    inverted_list = []
+    # Iterate over each element in the tuple
+    for i in range(len(tup)):
+        # For each element, calculate its negative value and append it to the list
+        inverted_list.append(-tup[i])
+    # Return the list of inverted elements
+    return tuple(inverted_list)
+```"
+47,C_s1/train,,True,False,False,,"```python
+def extract_unique(input_dict):
+    unique_values = set()
+    for values in input_dict.values():
+        unique_values.update(values)
+    return list(unique_values)
+
+# Test the function
+print(extract_unique({'msm' : [5, 6, 7, 8],'is' : [10, 11, 7, 5],'best' : [6, 12, 10, 8],'for' : [1, 2, 5]}))
+```"
+48,A_s0/train,,True,False,False,,"```python
+def find_dissimilar(tuple1, tuple2):
+    diff1 = tuple([item for item in tuple1 if item not in tuple2])
+    diff2 = tuple([item for item in tuple2 if item not in tuple1])
+    return diff1 + diff2
+```"
+49,B_s1/train,,True,True,False,,"```python
+def count_tuplex(input_tuple, element):
+    count = input_tuple.count(element)
+    return count
+
+# Test the function
+print(count_tuplex((2, 4, 5, 6, 2, 3, 4, 4, 7), 4))  # Output: 3
+```"
+50,hardC_s1/train,,False,False,False,,"```python
+def average_tuple(tuple_data):
+    result = []
+    for sub_tuple in tuple_data:
+        if not sub_tuple:  # Check if sub_tuple is empty
+            result.append(0)  # Add 0 if sub_tuple is empty
+        else:
+            avg = sum(sub_tuple) / len(sub_tuple)
+            result.append(avg)
+    return result
+```"
+51,A_s2/train,,True,True,False,,"```python
+from collections import Counter
+
+def max_occurrences(lst):
+    count = Counter(lst)
+    max_item, max_count = count.most_common(1)[0]
+    return max_item
+```"
+52,hardC_s1/train,,False,False,False,,"```python
+import math
+
+def sector_area(radius, angle):
+    return (angle / 360) * math.pi * (radius ** 2)
+```"
+53,A_s0/train,,True,False,False,,"```python
+def length_Of_Last_Word(s):
+    return len(s.split()[-1])
+```"
+54,hardC_s0/train,,False,False,True,,"```python
+def Seq_Linear(seq):
+    """"""
+    Check if the given sequence is linear.
+    
+    :param seq: List of integers
+    :return: ""Linear Sequence"" if the sequence is linear, otherwise returns ""Non-Linear Sequence""
+    """"""
+    # If the sequence has less than 2 elements, it is linear
+    if len(seq) < 2:
+        return ""Linear Sequence""
+    # Iterate through the sequence to check if it is linear
+    for i in range(1, len(seq)):
+        if seq[i] - seq[i-1] != 2*seq[i-1] - seq[i]:
+            return ""Non-Linear Sequence""
+    return ""Linear Sequence""
+```"
+55,hardA_s2/train,,False,False,False,,"```python
+def sorted_models(models):
+    return sorted(models, key=lambda x: x['model'])
+```"
+56,B_s2/train,,True,False,False,,"```python
+def get_ludic(n):
+    # Initialize an empty list to store lucid numbers
+    lucid_nums = []
+    # Loop through all possible numbers from 1 to n
+    for num in range(1, n + 1):
+        # Check if the number is not divisible by any integer between 2 and its square root
+        if all(num % i != 0 for i in range(2, int(num**0.5) + 1)):
+            # If the number is not divisible by any other number, it's a lucid number
+            lucid_nums.append(num)
+    # Return the list of lucid numbers
+    return lucid_nums
+```"
+57,C_s1/eval,70,True,False,True,,"```python
+def get_equal(tuples_list, length):
+    for tup in tuples_list:
+        if len(tup) != length:
+            return 'Not all tuples have same length'
+    return 'All tuples have same length'
+
+# Test the function
+print(get_equal([(11, 22, 33), (44, 55, 66)], 3))
+```"
+58,hardA_s2/train,,True,False,False,,"```python
+def min_difference(tuple_list):
+    min_diff = float('inf')  # Initialize the minimum difference to infinity
+    for i in range(len(tuple_list)):
+        for j in range(i + 1, len(tuple_list)):
+            # Calculate the difference between the second elements of the two tuples
+            diff = abs(tuple_list[i][1] - tuple_list[j][1])
+            # Update the minimum difference if the current difference is smaller
+            if diff < min_diff:
+                min_diff = diff
+    return min_diff
+```
+The `min_difference` function iterates through each pair of tuples in the given list and calculates the absolute difference between the second element of each pair. It keeps track of the smallest difference found, which is then returned."
+59,C_s0/eval,189,False,False,False,,"```python
+def first_Missing_Positive(nums, n):
+    # Mark numbers that are out of range or already visited as negative
+    for i in range(n):
+        if nums[i] <= 0 or nums[i] > n:
+            nums[i] = 0
+    
+    # Use index as a hash key and mark the presence of a number by negating the value at its index
+    for i in range(n):
+        index = abs(nums[i]) - 1
+        nums[index] = -abs(nums[index])
+    
+    # The first positive index + 1 is the missing number
+    for i in range(n):
+        if nums[i] > 0:
+            return i + 1
+    
+    # If all numbers from 1 to n are present, then the missing number is n+1
+    return n + 1
+```"
+60,C_s0/train,,True,False,False,,"```python
+def all_Bits_Set_In_The_Given_Range(n, start, end):
+    # Create a mask that has all bits set to 1 between start and end.
+    mask = ((1 << (end - start + 1)) - 1) << start
+    return (n & mask) == mask
+
+# Test the function
+assert all_Bits_Set_In_The_Given_Range(10,2,1) == True
+```"
+61,C_s0/train,,False,False,False,,"```python
+def count_Unset_Bits(n):
+    unset_bits_count = 0
+    for i in range(1, n + 1):
+        if bin(i)[2:].count('1') == 0:
+            unset_bits_count += 1
+    return unset_bits_count
+```"
+62,hardC_s0/train,,False,False,True,,"```python
+# Define the function to check if a sequence of numbers is linear
+def Seq_Linear(seq):
+    # Check if the sequence is not empty
+    if not seq:
+        return ""Empty Sequence""
+    # Check if each number in the sequence is two times the previous number
+    for i in range(1, len(seq)):
+        if seq[i] != 2 * seq[i - 1]:
+            return ""Not Linear Sequence""
+    # If all numbers are two times the previous number, return ""Linear Sequence""
+    return ""Linear Sequence""
+
+# Example usage of the function
+print(Seq_Linear([0,2,4,6,8,10]))  # Expected output: ""Linear Sequence""
+```"
+63,C_s1/train,,False,False,True,,"```python
+import cmath
+
+def Check_Solution(a, b, c):
+    # Calculate the discriminant
+    discriminant = cmath.sqrt(b**2 - 4*a*c)
+    # Calculate the two roots
+    root1 = (-b + discriminant) / (2*a)
+    root2 = (-b - discriminant) / (2*a)
+    # Check if the roots are numerically equal but opposite in sign
+    if abs(root1 - root2) < 1e-9 and (root1 * root2 < 0):
+        return ""Yes""
+    else:
+        return ""No""
+
+# Test the function
+assert Check_Solution(2, 0, -1) == ""Yes""
+```"
+64,A_s1/train,,True,True,False,,"```python
+def sum_column(data, column_index):
+    # Initialize the sum to zero
+    total_sum = 0
+    # Iterate over each sublist in the data
+    for sublist in data:
+        # Add the element at the specified column to the total sum
+        total_sum += sublist[column_index]
+    # Return the total sum of the specified column
+    return total_sum
+```
+
+This Python function iterates through each sublist in the provided 2D list (or list of lists), adds up the elements in the specified column index, and returns the total sum."
+65,B_s0/train,,True,False,False,,"```python
+import re
+
+def text_match(text):
+    # Define the pattern to match 'ac' followed by zero or more 'b's
+    pattern = 'ac(b*)'
+    # Search for the pattern in the text
+    if re.search(pattern, text):
+        return 'Found a match!'
+    else:
+        return 'Not matched!'
+```"
+66,B_s1/train,,False,False,False,,"```python
+def move_num(s):
+    # Filter out only numeric characters
+    numeric_chars = ''.join([char for char in s if char.isdigit()])
+    # Return the string with numeric characters at the end
+    return s + numeric_chars
+
+# Test the function
+print(move_num('I1love143you55three3000thousand'))
+```"
+67,B_s2/train,,True,False,False,,"```python
+def perfect_squares(start, end):
+    # Initialize an empty list to store perfect squares
+    squares = []
+    # Loop through the range from start to end
+    for num in range(start, end + 1):
+        # Check if the square of the number is within the range
+        if num * num in range(start, end + 1):
+            squares.append(num * num)  # Append the perfect square to the list
+    return squares
+```
+The `perfect_squares` function takes two integers, `start` and `end`, and returns a list of all perfect squares between them, inclusive. It initializes an empty list called `squares` to store the perfect squares. It then loops through each number in the range from `start` to `end`. For each number, it checks if the square of the number (`num * num`) is within the given range (including the start and end numbers). If it is, the square is appended to the `squares` list. Finally, the function returns the `squares` list containing all the perfect squares found within the given range."
+68,hardC_s2/train,,True,True,False,,"```python
+import cmath
+
+def Check_Solution(a, b, c):
+    # Calculate the discriminant
+    D = b**2 - 4*a*c
+
+    # Calculate the two roots
+    Sol1 = (-b + cmath.sqrt(D)) / (2*a)
+    Sol2 = (-b - cmath.sqrt(D)) / (2*a)
+
+    # Check if the roots are reciprocal of each other
+    if Sol1 * Sol2 == 1:
+        return ""Yes""
+    else:
+        return ""No""
+```"
+69,hardA_s1/train,,True,False,False,,"```python
+def nth_items(lst, n):
+    return lst[::2]  # Select every second item from the list
+```"
+70,C_s2/train,,True,True,False,,"```python
+def rgb_to_hsv(r, g, b):
+    # Normalize the RGB values to the 0-1 range
+    r, g, b = r / 255.0, g / 255.0, b / 255.0
+    
+    # Find the maximum and minimum RGB values
+    max_val = max(r, g, b)
+    min_val = min(r, g, b)
+    
+    # Calculate the difference between the maximum and minimum values
+    diff = max_val - min_val
+    
+    # Calculate the hue value
+    if max_val == min_val:
+        hue = 0  # The color is grayscale
+    elif max_val == r:
+        hue = (60 * ((g - b) / diff)) % 360  # Red
+    elif max_val == g:
+        hue = (60 * ((b - r) / diff)) + 120  # Green
+    elif max_val == b:
+        hue = (60 * ((r - g) / diff)) + 240  # Blue
+    
+    # Calculate the saturation and value
+    if max_val == 0:
+        saturation = 0
+    else:
+        saturation = (diff / max_val) * 100
+    
+    # Calculate the value
+    value = max_val * 100
+    
+    return (hue, saturation, value)
+```"
+71,A_s2/train,,True,False,False,,"```python
+def radix_sort(arr):
+    RADIX = 10
+    maxLength = len(str(max(arr)))
+
+    for i in range(maxLength):
+        currentPlace = 1
+        buckets = [[] for _ in range(RADIX)]
+        for num in arr:
+            digit = (num // currentPlace) % RADIX
+            buckets[digit].append(num)
+        arr = []
+        for bucket in buckets:
+            arr.extend(bucket)
+        currentPlace *= RADIX
+    return arr
+
+# Test the function
+print(radix_sort([15, 79, 25, 68, 37]))  # Output: [15, 25, 37, 68, 79]
+```"
+72,hardA_s0/train,,True,False,False,,"```python
+import re
+
+def check_IP(ip_address):
+    pattern = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$')
+    return 'Valid IP address' if pattern.match(ip_address) else 'Invalid IP address'
+```"
+73,B_s0/train,,False,False,False,,"```python
+import re
+
+def split_list(input_string):
+    return re.findall(""[a-z]+|[A-Z]"", input_string)
+```"
+74,B_s0/train,,False,False,False,,"Certainly! Below is a Python function that finds the dissimilar elements in two tuples:
+
+```python
+def find_dissimilar(tuple1, tuple2):
+    # Convert tuples to sets to remove duplicates and compare elements
+    set1 = set(tuple1)
+    set2 = set(tuple2)
+    
+    # Find the difference between the two sets
+    dissimilar_elements = set1 ^ set2
+    
+    # Return the result as a sorted list
+    return sorted(list(dissimilar_elements))
+
+# Test the function
+result = find_dissimilar((3, 4, 5, 6), (5, 7, 4, 10))
+print(result)  # Output: [3, 6, 7, 10]
+```
+
+### Explanation:
+1. **Convert Tuples to Sets**: Using `set(tuple1)` and `set(tuple2)`, we remove any duplicate elements from the input tuples, resulting in sets `set1` and `set2`.
+2. **Find the Difference**: The `^` operator is used to find the symmetric difference between the two sets, which includes elements that are in either set1 or set2, but not in their intersection.
+3. **Convert the Result Back to a List**: Finally, convert the set back to a list and sort it before returning it.
+
+This function should work correctly for the given test case and other similar scenarios."
+75,hardC_s1/train,,False,False,False,,"```python
+import re
+
+def camel_to_snake(name):
+    # Use regex to substitute occurrences of uppercase followed by a lowercase letter
+    return re.sub(r'(?<!^)(?=[a-z])', '_', name).lower()
+```"
+76,hardA_s0/eval,25,True,False,False,,"```python
+def find_Product(arr,n):
+    product = 1
+    for i in range(n):
+        if arr[i] not in set(arr[:i]) and arr[i] not in set(arr[i+1:]):
+            product *= arr[i]
+    return product
+```"
+77,A_s1/eval,221,True,True,False,,"```python
+def first_even(numbers):
+    for num in numbers:
+        if num % 2 == 0:
+            return num
+```
+
+The `first_even` function iterates through each number in the input list `numbers`. It checks if a number is even by using the modulus operator `%`. If a number is divisible by 2 (i.e., the remainder when divided by 2 is 0), it returns that number as the first even number found. This approach ensures that the function efficiently finds the first even number in the list."
+78,hardC_s0/train,,False,False,False,,"```python
+def merge(arr):
+    # Split the first and last elements of each list in the list of lists
+    merged = [[第一个列表的第一个元素, 第二个列表的第一个元素, 第三个列表的第一个元素], 
+             [第一个列表的最后一个元素, 第二个列表的最后一个元素, 第三个列表的最后一个元素]]
+    return merged
+```"
+79,C_s1/train,,True,False,False,,"```python
+def last(arr, target, n):
+    for i in range(n - 1, -1, -1):
+        if arr[i] == target:
+            return i
+    return -1
+```"
+80,hardA_s0/eval,22,True,False,False,,"```python
+def find_first_duplicate(arr):
+    seen = set()
+    for num in arr:
+        if num in seen:
+            return num
+        seen.add(num)
+    return None
+```"
+81,B_s0/eval,107,True,False,False,,"```python
+def count_Hexadecimal(start, end):
+    count = 0
+    for num in range(start, end + 1):
+        if all(char.isdigit() or char.lower() in 'abcdef' for char in str(num)):
+            count += 1
+    return count
+```"
+82,hardA_s1/train,,True,False,True,,"```python
+def Seq_Linear(seq):
+    if len(seq) == 1:
+        return ""Linear Sequence""
+    for i in range(1, len(seq)):
+        if seq[i] - seq[i-1] != 2:
+            return ""Not a Linear Sequence""
+    return ""Linear Sequence""
+```"
+83,B_s1/train,,True,False,False,,"```python
+def is_decimal(value):
+    return float(value).is_integer() or len(str(value).split('.')[-1]) == 2
+```"
+84,A_s2/train,,True,False,False,,"```python
+import math
+
+def perfect_squares(start, end):
+    squares = []
+    for num in range(int(math.sqrt(start)), int(math.sqrt(end)) + 1):
+        squares.append(num * num)
+    return squares
+```"
+85,B_s0/train,,True,False,False,,"```python
+def all_Bits_Set_In_The_Given_Range(num, start, end):
+    return all((num & (1 << i)) != 0 for i in range(start, end + 1))
+```"
+86,hardA_s0/eval,129,True,False,False,,"```python
+def magic_square_test(matrix):
+    n = len(matrix)
+    if n != 4 or any(len(row) != n for row in matrix):
+        return False
+    
+    # Calculate the sum of the first row
+    target_sum = sum(matrix[0])
+    
+    # Check rows
+    for i in range(n):
+        if sum(matrix[i]) != target_sum:
+            return False
+    
+    # Check columns
+    for j in range(n):
+        if sum(matrix[i][j] for i in range(n)) != target_sum:
+            return False
+    
+    # Check diagonals
+    if sum(matrix[i][i] for i in range(n)) != target_sum or sum(matrix[i][n-i-1] for i in range(n)) != target_sum:
+        return False
+    
+    return True
+```"
+87,hardA_s0/train,,True,False,False,,"```python
+def last(arr, x, n):
+    # Base case 1: Element not found
+    if x < arr[0] or x > arr[n-1]:
+        return -1
+    
+    # Base case 2: Element is found in the first position
+    elif arr[0] == x:
+        return 0
+    
+    # Recursive case
+    index = last(arr[1:], x, n-1)
+    # Element is found in the caller
+    if index == -1:
+        return 0
+    # Element is found in the caller but in a different position
+    else:
+        return index + 1
+```
+The provided Python function `last(arr, x, n)` uses recursion to find the last position of an element `x` in a sorted array `arr` with length `n`. It handles two cases to find the element:
+1. If the element is not found in the array (i.e., `x` is less than the first element or greater than the last element), it returns `-1`.
+2. If the element is found in the first position, it directly returns `0`.
+3. It recursively searches the remaining part of the array `arr[1:]` that is greater than the first element, then adds 1 to the result, which gives the last position of `x` in the larger array."
+88,hardA_s1/train,,False,False,False,,"```python
+def matrix_to_list(matrix):
+    return tuple(tuple(col) for col in zip(*zip(*matrix)))
+```"
+89,C_s2/eval,274,True,True,False,,"```python
+import math
+
+def even_binomial_Coeff_Sum(n):
+    # Calculate the sum of even index binomial coefficients using the formula
+    return int(math.pow(2, n - 1))
+
+# Test the function with the provided data point
+assert even_binomial_Coeff_Sum(4) == 8
+```"
+90,hardA_s0/train,,True,False,False,,"```python
+def bell_Number(n):
+    if n == 0:
+        return 1
+    elif n == 1:
+        return 1
+    else:
+        return bell_Number(n-1) + sum(bell_Number(i) for i in range(1, n))
+```"
+91,hardC_s0/train,,True,False,False,,"```python
+# This Python function converts a camel case string to a snake case string.
+# Example usage:
+# >>> camel_to_snake('PythonProgram')
+# 'python_program'
+def camel_to_snake(camel_str):
+    # Split the string at each uppercase letter (except at the beginning), then join them with an underscore.
+    return ''.join(['_' + i.lower() if i.isupper() else i for i in camel_str])[1:]
+```"
+92,hardA_s1/train,,False,False,False,,"```python
+def toggle_middle_bits(n):
+    # Toggle the last bit (n & 1) and the second last bit (n & 2)
+    # Then right shift all bits by 1 bit
+    return (n ^ 3) >> 1
+        
+# Test the function
+assert toggle_middle_bits(9) == 15
+```"
+93,B_s1/train,,True,False,False,,"```python
+import re
+
+def match_num(s):
+    pattern = '^\d'
+    return bool(re.match(pattern, s))
+
+# Test the function
+print(match_num('5-2345861'))  # Expected output: True
+```"
+94,hardC_s0/train,,True,False,False,,"```python
+from collections import defaultdict
+
+def unique_sublists(lists):
+    sublist_to_count = defaultdict(int)
+    for sublist in lists:
+        sorted_sublist = tuple(sorted(sublist))  # Sort each sublist to make duplicates equal
+        sublist_to_count[sorted_sublist] += 1
+    return sublist_to_count
+
+# Test the function
+print(unique_sublists([[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]]))  # Expected output: {(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}
+```"
+95,C_s0/train,,False,False,False,,"```python
+def check_isosceles(a, b, c):
+    # Check if any two sides are equal
+    if a == b or b == c or a == c:
+        return True
+    else:
+        return False
+```"
+96,hardA_s0/train,,False,False,False,,"```python
+def last_occurence_char(s, c):
+    return s.rfind(c)
+```"
+97,hardA_s1/eval,134,True,False,False,,"```python
+def check_last(arr, p, x):
+    for _ in range(p):
+        arr.append(x)
+    return ""EVEN"" if arr[-1] % 2 == 0 else ""ODD""
+```"
+98,hardC_s0/train,,False,False,False,,"```python
+def get_ludic(n):
+    nums = [i for i in range(1, n+1) if i % 2 != 0 and i % 3 != 0 and i % 5 != 0 and i % 7 != 0]
+    return nums
+```"
+99,hardC_s1/eval,182,True,False,False,,"```python
+import re
+
+def find_character(s):
+    upper = [char for char in s if char.isupper()]
+    lower = [char for char in s if char.islower()]
+    special = [char for char in s if not char.isalnum()]
+    numeric = [char for char in s if char.isdigit()]
+    return upper, lower, special, numeric
+```"
